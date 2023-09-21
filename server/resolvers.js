@@ -22,15 +22,15 @@ export const resolvers = {
     },
 
     Mutation: {
-        createJob: (_root,{input: {title, description}}, context) => {
-            const companyId = "FjcJCHJALA4i";
-            return createJob({companyId, title, description});
-        },
-        createJob: (_root,{input: {title, description}}, context) => {
-            console.log("[context ===]", context)
-            return null
-            const companyId = "FjcJCHJALA4i";
-            return createJob({companyId, title, description});
+        // createJob: (_root,{input: {title, description}}, context) => {
+        //     const companyId = "FjcJCHJALA4i";
+        //     return createJob({companyId, title, description});
+        // },
+        createJob: (_root,{input: {title, description}}, { user }) => {
+            if (!user) {
+                throw unAuthorisedError("Missing Authentication")
+            }
+            return createJob({companyId: user.companyId, title, description});
         },
 
         deleteJob: (_root, { id }) => deleteJob(id),
@@ -51,6 +51,12 @@ export const resolvers = {
 function notFoundError (message) {
     return new GraphQLError(message, {
         extensions: { code : 'Not Found' }
+    })
+}
+
+function unAuthorisedError (message) {
+    return new GraphQLError(message, {
+        extensions: { code : 'UN AUTHORISED' }
     })
 }
 
