@@ -1,0 +1,164 @@
+query {
+  jobs {
+    id,
+    date,
+    title,
+    company {
+      id,
+      description
+    }
+    description
+  }
+}
+=======================================
+
+query JobById($id: ID!) {
+  job(id: $id) {
+    id,
+    title,
+    date,
+    description,
+    company {
+      id,
+      name
+    },
+    description
+  } 
+}
+
+payload
+{
+  "id": "f3YzmnBZpK0o"
+}
+---------------------------------------------
+
+query CompanyById($id: ID!) {
+  company(id: $id) {
+      id,
+      name,
+      description,
+      jobs {
+        id,
+        title,
+        date,
+        description
+      }
+  }
+}
+
+payload
+{
+  "id": "FjcJCHJALA4i"
+}
+=======================================
+
+query CompanyById($id: ID!, $jobId: ID!) {
+  company(id: $id) {
+      id,
+      name,
+      description
+  },
+  job(id: $jobId) {
+    id,
+    date,
+    title,
+    description
+  }
+}
+
+Payload
+{
+  "id": "FjcJCHJALA4i",
+  "jobId": "f3YzmnBZpK0o",
+}
+-------------------------------------------
+query CompanyById($id: ID!, $jobId: ID!) {
+  company(id: $id) {
+      id,
+      name,
+      description
+  },
+  job(id: $jobId) {
+    id,
+    date,
+    title,
+    description
+  },
+  jobs {
+    title,
+    date
+  }
+}
+
+Payload
+{
+  "id": "FjcJCHJALA4i",
+  "jobId": "f3YzmnBZpK0o",
+}
+=============================================================
+
+mutation CreateJob($title: String!, $description: String) {
+  createJob(title: $title, description: $description) {
+    id,
+    date,
+    description,
+    company {
+      id,
+      name
+    }
+  }
+}
+
+payload
+{
+  "title": "Ankur vvv",
+  "description": "dddddddddddd"
+}
+============================================================
+
+mutation CreateJob($input: CreateJobInput!){
+  job: createJob(input: $input) {
+    id
+  }
+}
+payload
+{ "input": {
+  "title": "Ankur vvvddffffdddddddddfffd",
+  "description": "ddddddddlllll  ddd"
+}}
+--------------------------------------------------------------
+
+mutation deleteJob ($id: ID!) {
+   job: deleteJob(id: $id) {
+     id,
+     description,
+     date,
+     company {
+       id,
+       name
+     }
+   }
+}
+payload
+{
+  "id": "dvvo7VemeOvp"
+}
+===================================================================
+mutation updateJob($input: updateJobInput!){
+  job: updateJob(input: $input) {
+    id,
+    date,
+    description,
+    company {
+      id,
+      name
+    }
+  }
+}
+payload
+{ "input": {
+  "id": "ijG3R2nNPoU9",
+  "title": "Ankur vvvddffffdddddddddfffd",
+  "description": "ddddddddlllll  ddd"
+}}
+---------------------------------------------------------------------
