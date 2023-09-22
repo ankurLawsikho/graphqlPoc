@@ -29,17 +29,17 @@ export const companyByIdQuery = gql`
 `;
 
 export const allJobsQuery = gql`
-query jobs {
-    jobs {
-        id,
-        date,
-        title,
-        company {
+    query jobs {
+        jobs {
             id,
-            name
+            date,
+            title,
+            company {
+                id,
+                name
+            }
         }
     }
-}
 `; 
 
 
@@ -57,7 +57,7 @@ const jobDetailFragment = gql`
     }
 `;
 
-const jobByIdQuery = gql`
+export const jobByIdQuery = gql`
         query JobById($id: ID!) {
             job(id: $id) {
                 ...jobDetails
@@ -66,10 +66,19 @@ const jobByIdQuery = gql`
         ${jobDetailFragment}
 `;
 
+export const createJobMutation = gql`
+    mutation CreateJob($input: CreateJobInput!){
+        job: createJob(input: $input) {
+            ...jobDetails
+        }
+    }
+    ${jobDetailFragment}
+`;
+
 const httpLink = createHttpLink({ uri: 'http://localhost:9000/graphql'});
 
 const authLink = new ApolloLink((operation, forward) => {
-    console.log("[customLink] operation", operation);
+    // console.log("[customLink] operation", operation);
     const accessToken = getAccessToken();
     operation.setContext({
         headers: { 'Authorization': `Bearer ${accessToken}`}
@@ -90,7 +99,7 @@ export const apolloClient = new ApolloClient({
     }
 });
 
-
+// not in use
 export async function createJob (title, description) {
     const mutation = gql`
         mutation CreateJob($input: CreateJobInput!){
