@@ -12,6 +12,36 @@ const client = new GraphQLClient('http://localhost:9000/graphql', {
     },
 });
 
+export const companyByIdQuery = gql`
+       query CompanyById($id: ID!) {
+            company(id: $id) {
+                id,
+                name,
+                description,
+                jobs {
+                    id,
+                    title,
+                    date,
+                    description
+                }
+            }
+        }
+`;
+
+export const allJobsQuery = gql`
+query jobs {
+    jobs {
+        id,
+        date,
+        title,
+        company {
+            id,
+            name
+        }
+    }
+}
+`; 
+
 
 const jobDetailFragment = gql`
     fragment jobDetails on Job {
@@ -47,7 +77,7 @@ const authLink = new ApolloLink((operation, forward) => {
     return forward(operation);
 })
 
-const apolloClient = new ApolloClient({
+export const apolloClient = new ApolloClient({
     link: concat(authLink, httpLink),
     cache: new InMemoryCache(),
     defaultOptions: {
@@ -90,7 +120,7 @@ export async function createJob (title, description) {
     return data.job;
 }
 
-
+// not in use
 export async function getCompany(id) {
 
     const query = gql`
@@ -149,7 +179,7 @@ export async function getJob(id) {
     
 }
 
-
+// not in use
 export async function getJobs() {
 
     const query = gql`
