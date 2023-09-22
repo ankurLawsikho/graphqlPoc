@@ -165,3 +165,28 @@ payload
   "description": "ddddddddlllll  ddd"
 }}
 ---------------------------------------------------------------------
+Fragment
+
+query JobById($id: ID!) {
+  job(id: $id) {
+    ...jobDetails
+  } 
+}
+
+fragment jobDetails on Job {
+   id,
+    title,
+    date,
+    description,
+    company {
+      id,
+      name
+    },
+    description
+}
+
+payload
+{
+  "id": "XYZNJMXFax6n"
+}
+=======================================================================
