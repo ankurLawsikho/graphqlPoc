@@ -13,8 +13,9 @@ export function useCompany (id) {
 }
 
 
-export function useJobs () {
+export function useJobs (limit, offset) {
     const { data, loading, error } = useQuery(allJobsQuery,{
+      variables: {limit, offset},
       fetchPolicy: 'cache-first'
     });
   

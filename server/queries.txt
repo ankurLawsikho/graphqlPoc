@@ -190,3 +190,34 @@ payload
   "id": "XYZNJMXFax6n"
 }
 =======================================================================
+
+query jobs {
+  jobs (limit: 7, offset: 40) {
+    id
+    date
+    title
+    company {
+      id
+      name
+    }
+  }
+}
+
+-------------------------------------------------------------------------
+
+
+query jobs {
+ jobs (limit: 2){
+   items {
+     id
+     date
+     description
+     company {
+       id
+       name
+     }
+   }
+   totalCount
+ }
+}
+
