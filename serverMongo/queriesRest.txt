@@ -1,0 +1,82 @@
+
+
+AddUser 
+=======
+Url: http://localhost:7000/add-user
+method: post
+Payload
+{
+	  "companyId": 2,
+	  "email": "ankurbardhan1@gmail.com",
+	  "password": "123456"
+}
+
+Result
+{
+	"isError": true,
+	"message": "User added",
+	"data": {
+		"companyId": "2",
+		"email": "ankurbardhan1@gmail.com",
+		"password": "123456",
+		"status": 0,
+		"createdAt": "2023-10-16T12:04:21.199Z",
+		"updatedAt": "2023-10-16T12:04:21.199Z",
+		"_id": "652d26c72f7c0d23c5a9bc66",
+		"__v": 0
+	}
+}
+----------------------------------------------------------------
+
+AddCompany 
+==========
+Url: http://localhost:7000/add-company
+method: post
+Payload
+{
+	  "name": "Company1",
+	  "description": "Company is Good"
+}
+
+Result
+{
+	"isError": true,
+	"message": "Company added",
+	"data": {
+		"name": "Company1",
+		"description": "",
+		"createdAt": "2023-10-16T13:06:41.676Z",
+		"updatedAt": "2023-10-16T13:06:41.676Z",
+		"_id": "652d356bc6380a0cef105d6b",
+		"__v": 0
+	}
+}
+------------------------------------------------------------------------
+
+
+AddJob
+==========
+Url: http://localhost:7000/add-job
+method: post
+Payload
+{
+	  "companyId": "652d35f0c6380a0cef105d6d",
+	  "title": "Developer",
+	  "description": "Developer"
+}
+
+Result
+{
+	"isError": true,
+	"message": "Job added",
+	"data": {
+		"companyId": "652d35f0c6380a0cef105d6d",
+		"title": "Developer",
+		"description": "Developer",
+		"createdAt": "2023-10-16T13:13:43.274Z",
+		"updatedAt": "2023-10-16T13:13:43.274Z",
+		"_id": "652d37c487560834a5cf1cdd",
+		"__v": 0
+	}
+}
+--------------------------------------------------------------------------

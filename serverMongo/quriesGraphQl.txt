@@ -1,0 +1,14 @@
+Create company
+--------------
+
+mutation createCompany($input: CreateCompanyInput!) {
+  createCompany(input: $input) {
+    message
+  }
+}
+
+payload
+{
+  "title": "Ankur vvv",
+  "description": "dddddddddddd"
+}
