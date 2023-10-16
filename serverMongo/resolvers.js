@@ -10,14 +10,14 @@ const resolvers = {
             return company;
         },
        
-    }
+    },
 
-    // Mutation: {
-    //     createCompany: async (_root,{input: {name, description}}) => {
-    //         // const response = await addCompanyGraphQl({name, description});
-    //         return "lll";
-    //     }
-    // }
+    Mutation: {
+        createCompany: async (_root,{input: {name, description}}) => {
+            const response = await addCompanyGraphQl({name, description});
+            return response;
+        }
+    }
 
 }
 
