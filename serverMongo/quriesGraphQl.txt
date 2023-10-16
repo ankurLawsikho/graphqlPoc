@@ -1,14 +1,90 @@
+
+
+URL: http://localhost:7000/graphql
+
 Create company
 --------------
 
 mutation createCompany($input: CreateCompanyInput!) {
   createCompany(input: $input) {
-    message
+     isError,
+     message
   }
 }
 
 payload
-{
-  "title": "Ankur vvv",
-  "description": "dddddddddddd"
+{ 
+  "input": {
+    "name": "Company1",
+    "description": "company is Good"
+  }
 }
+
+response
+{
+  "data": {
+    "createCompany": {
+      "isError": "false",
+      "message": "Company Added"
+    }
+  }
+}
+
+========================================================================
+Create createJob
+================
+mutation createJob($input: CreateJobInput!) {
+  createJob(input: $input) {
+     isError,
+     message
+  }
+}
+
+payload
+{ 
+  "input": {
+    "companyId": "652d5d280c3bfdd1f62f9005", 
+    "title": "developer 2", 
+    "description": "developer 2"
+  }
+}
+
+response
+{
+  "data": {
+    "createJob": {
+      "isError": "false",
+      "message": "Job Added"
+    }
+  }
+}
+===================================================================
+
+create User
+mutation createUser ($input: CreateUserInput!) {
+  createUser (input: $input) {
+     isError,
+     message
+  }
+}
+
+payload
+{ 
+  "input": {
+    "companyId": "652d5d280c3bfdd1f62f9005", 
+    "email": "ankur2@gmail.com", 
+    "password": "developer"
+  }
+}
+
+payload
+=========
+{
+  "data": {
+    "createUser": {
+      "isError": "true",
+      "message": "User added"
+    }
+  }
+}
+=================================================================

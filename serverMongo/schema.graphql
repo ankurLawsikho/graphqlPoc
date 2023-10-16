@@ -3,10 +3,13 @@ type Query {
 }
 
 type Mutation {
-    createCompany(input: CreateCompanyInput!): Acknowledgement
+    createCompany(input: CreateCompanyInput!): Acknowledgement,
+    createJob(input: CreateJobInput!): Acknowledgement,
+    createUser(input: CreateUserInput!): Acknowledgement
 }
 
 type Acknowledgement {
+    isError: String,
     message: String
 }
 
@@ -20,6 +23,18 @@ type Company {
 input CreateCompanyInput {
     name: String!, 
     description: String
+}
+
+input CreateJobInput {
+    companyId: String!, 
+    title: String, 
+    description: String
+}
+
+input CreateUserInput {
+    companyId: String!, 
+    email: String, 
+    password: String
 }
 
 

@@ -3,6 +3,70 @@ const Company = require('../models/company.model');
 const Job = require('../models/job.model');
 
 
+const addUserGraphQl = async (payload) => {
+   
+    try {
+        const companyId = payload.companyId ? payload.companyId : "";
+        const email = payload.email ? payload.email : "";
+        const password = payload.password ? payload.password: "";
+
+        let Info = await User.create({
+            companyId,
+            email,
+            password
+        });
+        if (!Info) {
+            return {
+                "isError": "true",
+                "message":"Some Error Occured"
+            };
+        }
+
+        return {
+            "isError": "true",
+            "message":"User added"
+        };
+    } catch (error) {
+        return {
+            "isError": "true",
+            "message":"Some Error Occured"
+        };
+    }
+}
+
+
+const addJobGraphQL = async (payload) => {
+   
+    try {
+        const companyId = payload.companyId ? payload.companyId : "";
+        const title = payload.title ? payload.title : "";
+        const description = payload.description ? payload.description: "";
+
+        let Info = await Job.create({
+            companyId,
+            title,
+            description
+        });
+        if (!Info) {
+            return {
+                "isError": "true",
+                "message":"Some Error Occured"
+            };
+        }
+
+        return {
+            "isError": "false",
+            "message":"Job Added"
+        };
+    } catch (error) {
+        return {
+            "isError": "true",
+            "message":"Some Error Occured"
+        };
+    }
+}
+
+
 
 const addCompanyGraphQl = async (payload) => {
    
@@ -16,15 +80,18 @@ const addCompanyGraphQl = async (payload) => {
         });
         if (!Info) {
             return {
+                "isError": "true",
                 "message": "Some Error Occured"
             };
         }
 
         return {
+            "isError": "false",
             "message": "Company Added"
         };
     } catch (error) {
         return {
+            "isError": "true",
             "message":"Some Error Occured"
         };
     }
@@ -139,5 +206,7 @@ module.exports = {
     addUser,
     addCompany,
     addJob,
-    addCompanyGraphQl
+    addCompanyGraphQl,
+    addJobGraphQL,
+    addUserGraphQl
 };
