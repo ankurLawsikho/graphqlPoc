@@ -1,5 +1,7 @@
 type Query {
-    company(id: ID!): Company
+    getcompany(id: String!): Company,
+    getJob(id: String!): Job,
+    getUser(id: String!): User,
 }
 
 type Mutation {
@@ -13,10 +15,30 @@ type Acknowledgement {
     message: String
 }
 
+type User {
+    isError: String,
+    id: String,
+    email: String,
+    status: String,
+    message: String,
+}
+
 
 type Company {
-    id: ID,
-    name: String
+    isError: String,
+    id: String,
+    name: String,
+    description: String,
+    message: String,
+}
+
+type Job {
+    isError: String,
+    id: String,
+    companyId: String,
+    title: String,
+    description: String,
+    message: String,
 }
 
 

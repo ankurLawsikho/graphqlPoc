@@ -1,20 +1,28 @@
 const { GraphQLError } = require("graphql");
-const { addCompanyGraphQl, addJobGraphQL, addUserGraphQl } = require('./controller/main_controller')
+const { addJobGraphQL, addUserGraphQl } = require('./controller/main_controller');
+const { createCompanyCt, getCompanyCtl, getJobCtl, getUserCtl } = require('./controller/resolver_controller');
 const resolvers = {
     Query: {
-        company: async (_root, {id}) => {
-            const company = {
-                    "id": 2,
-                    "name": "company1"
-                };
-            return company;
+        getcompany: async (_root, {id}) => {
+            const response = await getCompanyCtl({id: id});
+            return response;
+        },
+
+        getJob: async (_root, {id}) => {
+            const response = await getJobCtl({id: id});
+            return response;
+        },
+
+        getUser: async (_root, {id}) => {
+            const response = await getUserCtl({id: id});
+            return response;
         },
        
     },
 
     Mutation: {
         createCompany: async (_root,{input: {name, description}}) => {
-            const response = await addCompanyGraphQl({name, description});
+            const response = await createCompanyCtl({name, description});
             return response;
         },
 

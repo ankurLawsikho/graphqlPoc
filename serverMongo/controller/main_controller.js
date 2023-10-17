@@ -3,6 +3,92 @@ const Company = require('../models/company.model');
 const Job = require('../models/job.model');
 
 
+const getUserGraphQl = async (payload) => {
+    try {
+        const Id = payload.id ? payload.id : "";
+        const result = await User.findOne({ _id: Id })
+
+        if (!result) {
+            return {
+                "isError": "true",
+                "message":"Some Error Occured"
+            };
+        }
+        
+        return {
+            "isError": "false",
+            "id": result._id,
+            "companyId": result.companyId,
+            "email": result.email,
+            "status": result.status,
+            "message":"No Error"
+        };
+    } catch (error) {
+        return {
+            "isError": "true",
+            "message":"Some Error Occured"
+        };
+    }
+}
+
+
+const getJobGraphQl = async (payload) => {
+    try {
+        const Id = payload.id ? payload.id : "";
+        const result = await Job.findOne({ _id: Id })
+
+        if (!result) {
+            return {
+                "isError": "true",
+                "message":"Some Error Occured"
+            };
+        }
+        
+        return {
+            "isError": "false",
+            "id": result._id,
+            "companyId": result.companyId,
+            "title": result.title,
+            "description": result.description,
+            "message":"No Error"
+        };
+    } catch (error) {
+        return {
+            "isError": "true",
+            "message":"Some Error Occured"
+        };
+    }
+}
+
+
+const getCompanyGraphQl = async (payload) => {
+    try {
+        const companyId = payload.id ? payload.id : "";
+        const result = await Company.findOne({ _id: companyId })
+
+        if (!result) {
+            return {
+                "isError": "true",
+                "message":"Some Error Occured"
+            };
+        }
+        
+        return {
+            "isError": "false",
+            "id": result._id,
+            "name": result.name,
+            "description": result.description,
+            "message":"No Error"
+        };
+    } catch (error) {
+        return {
+            "isError": "true",
+            "message":"Some Error Occured"
+        };
+    }
+}
+
+
 const addUserGraphQl = async (payload) => {
    
     try {
@@ -208,5 +294,8 @@ module.exports = {
     addJob,
     addCompanyGraphQl,
     addJobGraphQL,
-    addUserGraphQl
+    addUserGraphQl,
+    getCompanyGraphQl,
+    getJobGraphQl,
+    getUserGraphQl
 };

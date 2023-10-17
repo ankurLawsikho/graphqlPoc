@@ -88,3 +88,104 @@ payload
   }
 }
 =================================================================
+
+Get Company
+-----------
+query getcompany ($id: String!) {
+  getcompany (id: $id) {
+    isError,
+    id,
+    name,
+    description,
+    message
+  }
+}
+
+payload
+-------
+{ 
+  "id": "652d5d280c3bfdd1f62f9005" 
+}
+
+response
+--------
+{
+  "data": {
+    "getcompany": {
+      "isError": "false",
+      "id": "652d5d280c3bfdd1f62f9005",
+      "name": "Company1",
+      "description": "company is Good",
+      "message": "No Error"
+    }
+  }
+}
+======================================================================
+
+Get Job By id
+=============
+query getJob($getJobId: String!) {
+    getJob(id: $getJobId) {
+      companyId,
+      description,
+      id,
+      isError,
+      message,
+      title
+    }
+}
+
+payload
+-------
+{
+  "getJobId": "652d63494886e20f2f281dfe"
+}
+
+response
+========
+{
+  "data": {
+    "getJob": {
+      "companyId": "652d5d280c3bfdd1f62f9005",
+      "description": "developer",
+      "id": "652d63494886e20f2f281dfe",
+      "isError": "false",
+      "message": "No Error",
+      "title": "developer"
+    }
+  }
+}
+===================================================================
+
+Get User By id
+---------------
+query getUser ($getUserId: String!) {
+  getUser(id: $getUserId) {
+    isError,
+    message,
+    id,
+    email,
+    status
+  }
+}
+
+payload
+-------
+{
+  "getUserId": "652d26c72f7c0d23c5a9bc66"
+}
+
+response
+--------
+{
+  "data": {
+    "getUser": {
+      "isError": "false",
+      "message": "No Error",
+      "id": "652d26c72f7c0d23c5a9bc66",
+      "email": "ankurbardhan1@gmail.com",
+      "status": "0"
+    }
+  }
+}
+==============================================================
